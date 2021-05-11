@@ -1,12 +1,15 @@
-
-<h1 align="center">
+<div align="center">
+<h1>
   User schedule management service
   <br>
-</h1>
+  </h1>
+</div>
 
+<div align="center">
 <h4 align="center">A system to maintain working hours of various service centers, mapping of technicians to service centers and working hours of each technician every week.</h4>
+</div>
 
-
+<div align="center">
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
@@ -14,6 +17,7 @@
   <a href="#related">Related</a> •
   <a href="#license">License</a>
 </p>
+</div>
 
 ![service API](./assets/service api.gif)
 
