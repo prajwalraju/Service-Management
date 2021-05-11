@@ -15,7 +15,6 @@ public class SearchTechnicianController {
     @Autowired
     private SearchTechnicianService searchTechnicianService;
 
-    //TODO alter the search technician and add multiple ways to search
     @GetMapping
     public ResponseEntity<?> getSearchTechnician(@RequestBody CenterSchedule centerSchedule) throws Exception {
         return new ResponseEntity<>(searchTechnicianService.getSearchTechnician(centerSchedule), HttpStatus.OK);

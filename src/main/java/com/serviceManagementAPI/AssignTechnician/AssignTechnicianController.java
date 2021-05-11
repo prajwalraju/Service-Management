@@ -29,7 +29,6 @@ public class AssignTechnicianController {
         return new ResponseEntity<>(centerSchedule, HttpStatus.ACCEPTED);
     }
 
-    // Todo return a custom http response rather than a string
     @DeleteMapping
     public ResponseEntity<?> deleteAssignTechnician(@RequestBody CenterSchedule centerSchedule) throws Exception {
         assignTechnicianService.deleteAssignTechnician(centerSchedule);

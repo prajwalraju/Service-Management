@@ -6,10 +6,8 @@ import javax.persistence.Id;
 @Entity
 public class TechnicianList {
     @Id
-//    @NotBlank(message = "Technician ID is mandatory")
     private int technicianId;
 
-    //    @NotBlank(message = "Center ID is mandatory")
     private int centerId;
     private boolean status;
 
@@ -38,7 +36,7 @@ public class TechnicianList {
         this.centerId = centerId;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

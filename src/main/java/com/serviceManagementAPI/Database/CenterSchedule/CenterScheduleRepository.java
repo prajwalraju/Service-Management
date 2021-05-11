@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 public interface CenterScheduleRepository extends JpaRepository<CenterSchedule, Integer> {
-  @Query("FROM CenterSchedule WHERE centerId = ?1 AND date = ?2")
-  List<CenterSchedule> findAllByCenterIdAndDate(int centerId, Date date);
+
+    @Query("FROM CenterSchedule WHERE centerId = ?1 AND date = ?2")
+    List<CenterSchedule> findAllByCenterIdAndDate(int centerId, Date date);
+
 }

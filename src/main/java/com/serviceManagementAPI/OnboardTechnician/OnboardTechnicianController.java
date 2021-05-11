@@ -29,7 +29,6 @@ public class OnboardTechnicianController {
         return new ResponseEntity<>(technicianList, HttpStatus.ACCEPTED);
     }
 
-    // TODO return a custom http response rather than a string
     @DeleteMapping
     public ResponseEntity<?> delTechnicianList(@RequestParam(value = "technicianId") int technicianId) throws Exception {
         technicianService.delTechnicianList(technicianId);

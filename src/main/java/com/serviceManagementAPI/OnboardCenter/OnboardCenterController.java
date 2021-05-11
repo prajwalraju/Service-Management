@@ -12,7 +12,6 @@ public class OnboardCenterController {
     @Autowired
     private OnboardCenterService onboardCenterService;
 
-
     @GetMapping
     public ResponseEntity<?> getServiceCenter() throws Exception {
         return new ResponseEntity<>(onboardCenterService.getServiceCenter(), HttpStatus.OK);
@@ -30,7 +29,6 @@ public class OnboardCenterController {
         return new ResponseEntity<>(serviceCenter, HttpStatus.ACCEPTED);
     }
 
-    // TODO return a custom http response rather than a string
     @DeleteMapping
     public ResponseEntity<?> delServiceCenter(@RequestParam(value = "centerId") int centerId) throws Exception {
         onboardCenterService.delServiceCenter(centerId);

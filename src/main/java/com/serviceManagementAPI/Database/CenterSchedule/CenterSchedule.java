@@ -14,9 +14,7 @@ public class CenterSchedule {
     private int id;
 
     private int technicianId;
-    //    @NotBlank(message = "Center ID is mandatory")
     private int centerId;
-    //    @NotBlank(message = "Date is mandatory")
     private Date date;
     private Time startTime;
     private Time endTime;

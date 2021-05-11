@@ -42,7 +42,8 @@ $ spring run src/main/java/com/serviceManagementAPI/ServiceManagementApiApplicat
 
 Note: If you're using Command Line for Windows to run the Spring Boot, [see this guide](https://www.javaguides.net/2019/05/run-spring-boot-app-from-command-line.html).
 
-
+## Database Schema
+![database schema](./assets/database.png)
 ## Download
 
 You can [download](https://gitlab.corp.olacabs.com/prajwal.r2/servicemanagementapi) the latest installable version of Service Management API.

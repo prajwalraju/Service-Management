@@ -60,7 +60,7 @@ public class ServiceCenter {
         this.stopTime = stopTime;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
