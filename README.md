@@ -11,7 +11,9 @@
 
 <div align="center">
 <p align="center">
-  <a href="#key-features">Key Features</a> •
+  <a href="#key-features">
+        <h3>Key Features</h3>
+  </a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#credits">Credits</a> •
   <a href="#related">Related</a> •

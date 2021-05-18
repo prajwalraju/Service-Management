@@ -1,41 +1,32 @@
 package com.serviceManagementAPI.Database.CenterSchedule;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.istack.NotNull;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.sql.Time;
 import java.time.LocalDate;
 
-@Entity
-public class CenterSchedule {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
 
-    @NotNull
+//@Entity
+//@Table(name = "center_schedule")
+public class CenterScheduleEntity {
+
+    //    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private int technicianId;
     private int centerId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    //    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private Time startTime;
     private Time endTime;
     private boolean status;
 
-    public CenterSchedule() {
-    }
-
-    public CenterSchedule(int id,
-                          int technicianId,
-                          int centerId,
-                          LocalDate date,
-                          Time startTime,
-                          Time endTime,
-                          boolean status) {
+    public CenterScheduleEntity(int id,
+                                int technicianId,
+                                int centerId,
+                                LocalDate date,
+                                Time startTime,
+                                Time endTime,
+                                boolean status) {
         this.id = id;
         this.technicianId = technicianId;
         this.centerId = centerId;
@@ -73,12 +64,16 @@ public class CenterSchedule {
         return date;
     }
 
-    public boolean isCenter() {
-        return !String.valueOf(centerId).equals("0");
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Time getStartTime() {
         return startTime;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
     }
 
     public Time getEndTime() {
@@ -96,21 +91,4 @@ public class CenterSchedule {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-    public boolean isStartTime() {
-        return startTime != null;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public boolean isDate() {
-        return date != null;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
 }

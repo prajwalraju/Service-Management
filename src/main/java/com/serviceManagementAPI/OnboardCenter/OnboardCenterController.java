@@ -1,37 +1,66 @@
 package com.serviceManagementAPI.OnboardCenter;
 
 import com.serviceManagementAPI.Database.ServiceCenter.ServiceCenter;
+import com.serviceManagementAPI.Database.ServiceCenter.ServiceCenterRepository;
+import com.serviceManagementAPI.Exception.ResourceAlreadyProcessedException;
+import com.serviceManagementAPI.Exception.ResourceBadException;
+import com.serviceManagementAPI.Exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/onboardCenter")
+@RequestMapping("/v1/onboardCenter")
 public class OnboardCenterController {
+
     @Autowired
-    private OnboardCenterService onboardCenterService;
+    private ServiceCenterRepository serviceCenterRepository;
+
 
     @GetMapping
-    public ResponseEntity<?> getServiceCenter() throws Exception {
-        return new ResponseEntity<>(onboardCenterService.getServiceCenter(), HttpStatus.OK);
+    public List<ServiceCenter> getServiceCenter() throws Exception {
+        return serviceCenterRepository.findAllByStatus(true);
     }
 
     @PostMapping
-    public ResponseEntity<?> addServiceCenter(@RequestBody ServiceCenter serviceCenter) throws Exception {
-        onboardCenterService.addServiceCenter(serviceCenter);
-        return new ResponseEntity<>(serviceCenter, HttpStatus.CREATED);
+    public ServiceCenter addServiceCenter(@RequestBody ServiceCenter serviceCenter) throws Exception {
+        if (serviceCenterRepository.findById(serviceCenter.getCenterId()).isPresent()) {
+            throw new ResourceAlreadyProcessedException("Center already Present");
+        } else {
+            return serviceCenterRepository.save(serviceCenter);
+        }
+
     }
 
     @PutMapping
-    public ResponseEntity<?> updateServiceCenter(@RequestBody ServiceCenter serviceCenter) throws Exception {
-        onboardCenterService.updateServiceCenter(serviceCenter);
-        return new ResponseEntity<>(serviceCenter, HttpStatus.ACCEPTED);
+    public ServiceCenter updateServiceCenter(@RequestBody ServiceCenter serviceCenter) throws Exception {
+
+
+        ServiceCenter existing = serviceCenterRepository.findById(serviceCenter.getCenterId())
+                .orElseThrow(() -> new ResourceNotFoundException("Center not found"));
+        existing.setLocation(serviceCenter.getLocation());
+        existing.setStartTime(serviceCenter.getStartTime());
+        existing.setStopTime(serviceCenter.getStopTime());
+        existing.setStatus(serviceCenter.getStatus());
+        return serviceCenterRepository.save(existing);
+
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delServiceCenter(@RequestParam(value = "centerId") int centerId) throws Exception {
-        onboardCenterService.delServiceCenter(centerId);
-        return new ResponseEntity<>("Center Removed", HttpStatus.GONE);
+    public ResponseEntity<ServiceCenter> delServiceCenter(@RequestParam(value = "centerId") int centerId) throws Exception {
+        ServiceCenter existing = serviceCenterRepository.findById(centerId)
+                .orElseThrow(() -> new ResourceNotFoundException("Center not found to remove"));
+
+        if (existing.getStatus() == true) {
+            existing.setStatus(false);
+            serviceCenterRepository.save(existing);
+            return ResponseEntity.ok().build();
+        } else {
+            throw new ResourceBadException("Center already disabled");
+        }
     }
 }
+
+
