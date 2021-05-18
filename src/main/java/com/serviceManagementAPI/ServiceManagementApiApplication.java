@@ -10,7 +10,5 @@ public class ServiceManagementApiApplication {
         SpringApplication.run(ServiceManagementApiApplication.class, args);
     }
     //TODO to substitute entity class with another similar class to isolate it
-    //TODO look into the code sent by shwetha
-    //TODO make exceptions to work
 
 }
