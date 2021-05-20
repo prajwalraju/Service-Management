@@ -1,24 +1,28 @@
 package com.serviceManagementAPI.Database.CenterSchedule;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.*;
 import java.sql.Time;
 import java.time.LocalDate;
 
-
-//@Entity
-//@Table(name = "center_schedule")
+@Entity
+@Table(name = "center_schedule")
 public class CenterScheduleEntity {
-
-    //    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private int technicianId;
     private int centerId;
 
-    //    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private Time startTime;
     private Time endTime;
     private boolean status;
+
+    public CenterScheduleEntity() {
+    }
 
     public CenterScheduleEntity(int id,
                                 int technicianId,
@@ -64,16 +68,12 @@ public class CenterScheduleEntity {
         return date;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public boolean isCenter() {
+        return !String.valueOf(centerId).equals("0");
     }
 
     public Time getStartTime() {
         return startTime;
-    }
-
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
     }
 
     public Time getEndTime() {
@@ -91,4 +91,21 @@ public class CenterScheduleEntity {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public boolean isStartTime() {
+        return startTime != null;
+    }
+
+    public void setStartTime(Time startTime) {
+        this.startTime = startTime;
+    }
+
+    public boolean isDate() {
+        return date != null;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
 }

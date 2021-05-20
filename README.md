@@ -9,17 +9,6 @@
 <h4 align="center">A system to maintain working hours of various service centers, mapping of technicians to service centers and working hours of each technician every week.</h4>
 </div>
 
-<div align="center">
-<p align="center">
-  <a href="#key-features">
-        <h3>Key Features</h3>
-  </a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
-  <a href="#license">License</a>
-</p>
-</div>
 
 ![service API](./assets/service api.gif)
 
@@ -30,10 +19,14 @@
 * Assign's working hours of each technician every week.
 * Given a time slot and service center, the system will be able to give list of all available technicians.
 
+## POSTMAN COLLECTION
+
+[Postman Collection](https://www.getpostman.com/collections/ed12bcbaf06156cc5e04)
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Springboot](https://spring.io/projects/spring-boot) installed on your computer. From your command line:
+To clone and run this application, you'll need [Git](https://git-scm.com)
+and [Springboot](https://spring.io/projects/spring-boot) installed on your computer. From your command line:
 
 ```bash
 # Clone this repository
@@ -46,20 +39,24 @@ $ cd servicemanagementapi
 $ spring run src/main/java/com/serviceManagementAPI/ServiceManagementApiApplication.java 
 ```
 
-Note: If you're using Command Line for Windows to run the Spring Boot, [see this guide](https://www.javaguides.net/2019/05/run-spring-boot-app-from-command-line.html).
+Note: If you're using Command Line for Windows to run the Spring
+Boot, [see this guide](https://www.javaguides.net/2019/05/run-spring-boot-app-from-command-line.html).
 
 ## Database Schema
+
 ![database schema](./assets/database.png)
+
 ## Download
 
-You can [download](https://gitlab.corp.olacabs.com/prajwal.r2/servicemanagementapi) the latest installable version of Service Management API.
+You can [download](https://gitlab.corp.olacabs.com/prajwal.r2/servicemanagementapi) the latest installable version of
+Service Management API.
 
 ## Credits
 
 This software uses the following open source packages:
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
-- [Spring Initializr](https://start.spring.io/)
+- [Spring Initializer](https://start.spring.io/)
 - [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
 - [MySQL](https://www.mysql.com/)
 

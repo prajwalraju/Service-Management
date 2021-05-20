@@ -1,14 +1,12 @@
 package com.serviceManagementAPI.OnboardCenter;
 
 import com.serviceManagementAPI.Database.ServiceCenter.ServiceCenter;
-import com.serviceManagementAPI.Database.ServiceCenter.ServiceCenterRepository;
-import com.serviceManagementAPI.Exception.ResourceAlreadyProcessedException;
-import com.serviceManagementAPI.Exception.ResourceBadException;
-import com.serviceManagementAPI.Exception.ResourceNotFoundException;
+import com.serviceManagementAPI.Database.ServiceCenter.ServiceCenterEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,50 +14,27 @@ import java.util.List;
 public class OnboardCenterController {
 
     @Autowired
-    private ServiceCenterRepository serviceCenterRepository;
-
+    private OnboardCenterService onboardCenterService;
 
     @GetMapping
-    public List<ServiceCenter> getServiceCenter() throws Exception {
-        return serviceCenterRepository.findAllByStatus(true);
+    public List<ServiceCenterEntity> getServiceCenter() throws Exception {
+        return onboardCenterService.getServiceCenter();
     }
 
     @PostMapping
-    public ServiceCenter addServiceCenter(@RequestBody ServiceCenter serviceCenter) throws Exception {
-        if (serviceCenterRepository.findById(serviceCenter.getCenterId()).isPresent()) {
-            throw new ResourceAlreadyProcessedException("Center already Present");
-        } else {
-            return serviceCenterRepository.save(serviceCenter);
-        }
-
+    public ServiceCenterEntity addServiceCenter(@Valid @RequestBody ServiceCenter serviceCenter) throws Exception {
+        return onboardCenterService.addServiceCenter(serviceCenter);
     }
 
     @PutMapping
-    public ServiceCenter updateServiceCenter(@RequestBody ServiceCenter serviceCenter) throws Exception {
-
-
-        ServiceCenter existing = serviceCenterRepository.findById(serviceCenter.getCenterId())
-                .orElseThrow(() -> new ResourceNotFoundException("Center not found"));
-        existing.setLocation(serviceCenter.getLocation());
-        existing.setStartTime(serviceCenter.getStartTime());
-        existing.setStopTime(serviceCenter.getStopTime());
-        existing.setStatus(serviceCenter.getStatus());
-        return serviceCenterRepository.save(existing);
+    public ServiceCenterEntity updateServiceCenter(@Valid @RequestBody ServiceCenter serviceCenter) throws Exception {
+        return onboardCenterService.updateServiceCenter(serviceCenter);
 
     }
 
     @DeleteMapping
-    public ResponseEntity<ServiceCenter> delServiceCenter(@RequestParam(value = "centerId") int centerId) throws Exception {
-        ServiceCenter existing = serviceCenterRepository.findById(centerId)
-                .orElseThrow(() -> new ResourceNotFoundException("Center not found to remove"));
-
-        if (existing.getStatus() == true) {
-            existing.setStatus(false);
-            serviceCenterRepository.save(existing);
-            return ResponseEntity.ok().build();
-        } else {
-            throw new ResourceBadException("Center already disabled");
-        }
+    public ResponseEntity<ServiceCenterEntity> delServiceCenter(@Valid @RequestParam(value = "centerId") int centerId) throws Exception {
+        return onboardCenterService.delServiceCenter(centerId);
     }
 }
 

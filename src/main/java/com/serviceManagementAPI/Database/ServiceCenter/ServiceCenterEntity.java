@@ -1,15 +1,22 @@
 package com.serviceManagementAPI.Database.ServiceCenter;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Time;
 
-//@Entity
+@Entity
+@Table(name = "service_center")
 public class ServiceCenterEntity {
-    //    @Id
+    @Id
     private int centerId;
     private String location;
     private Time startTime;
     private Time stopTime;
     private boolean status;
+
+    public ServiceCenterEntity() {
+    }
 
     public ServiceCenterEntity(int centerId,
                                String location,
@@ -55,7 +62,7 @@ public class ServiceCenterEntity {
         this.stopTime = stopTime;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 

@@ -1,21 +1,19 @@
 package com.serviceManagementAPI.Database.TechnicianList;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
-
-@Entity
 public class TechnicianList {
-    @Id
-    private int technicianId;
 
+    @NotNull
+    private int technicianId;
+    @NotNull
     private int centerId;
+    @NotNull
     private boolean status;
 
-    public TechnicianList() {
-    }
-
-    public TechnicianList(int technicianId, int centerId, boolean status) {
+    public TechnicianList(int technicianId,
+                          int centerId,
+                          boolean status) {
         this.technicianId = technicianId;
         this.centerId = centerId;
         this.status = status;
@@ -37,12 +35,11 @@ public class TechnicianList {
         this.centerId = centerId;
     }
 
-    public boolean getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
     public void setStatus(boolean status) {
         this.status = status;
     }
-
 }

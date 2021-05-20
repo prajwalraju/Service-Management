@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public interface TechnicianListRepository extends JpaRepository<TechnicianList, Integer> {
+public interface TechnicianListRepository extends JpaRepository<TechnicianListEntity, Integer> {
 
-    ArrayList<TechnicianList> findAllByStatus(boolean b);
+    ArrayList<TechnicianListEntity> findAllByStatus(boolean b);
 
-    @Query("FROM TechnicianList WHERE technicianId = ?1 AND status = true")
-    ArrayList<TechnicianList> findByTechnicianAndStatus(int technicianId);
+    @Query("FROM TechnicianListEntity WHERE technicianId = ?1 AND status = true")
+    ArrayList<TechnicianListEntity> findByTechnicianAndStatus(int technicianId);
 }

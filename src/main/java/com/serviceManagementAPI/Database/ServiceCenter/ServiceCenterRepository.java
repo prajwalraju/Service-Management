@@ -8,19 +8,19 @@ import java.sql.Time;
 import java.util.ArrayList;
 
 @Repository
-public interface ServiceCenterRepository extends JpaRepository<ServiceCenter, Integer> {
+public interface ServiceCenterRepository extends JpaRepository<ServiceCenterEntity, Integer> {
 
-    ArrayList<ServiceCenter> findAllByStatus(boolean b);
+    ArrayList<ServiceCenterEntity> findAllByStatus(boolean b);
 
-    @Query("FROM ServiceCenter WHERE centerId = ?1 AND status = true")
-    ArrayList<ServiceCenter> findByCenterAndStatus(int centerId);
+    @Query("FROM ServiceCenterEntity WHERE centerId = ?1 AND status = true")
+    ArrayList<ServiceCenterEntity> findByCenterAndStatus(int centerId);
 
-    @Query("FROM ServiceCenter WHERE centerId = ?1 AND startTime < ?2")
-    ArrayList<ServiceCenter> ValidStartTime(int centerId, Time startTime);
+    @Query("FROM ServiceCenterEntity WHERE centerId = ?1 AND startTime < ?2")
+    ArrayList<ServiceCenterEntity> ValidStartTime(int centerId, Time startTime);
 
-    @Query("FROM ServiceCenter WHERE centerId = ?1 AND stopTime > ?2")
-    ArrayList<ServiceCenter> ValidStopTime(int centerId, Time endTime);
+    @Query("FROM ServiceCenterEntity WHERE centerId = ?1 AND stopTime > ?2")
+    ArrayList<ServiceCenterEntity> ValidStopTime(int centerId, Time endTime);
 
     @Query(value = "SELECT * FROM center_schedule WHERE center_id = ?1 AND start_time > (SELECT subtime(?2, '0:30:0'));", nativeQuery = true)
-    ArrayList<ServiceCenter> ValidCustomerStopTime(int centerId, Time startTime);
+    ArrayList<ServiceCenterEntity> ValidCustomerStopTime(int centerId, Time startTime);
 }

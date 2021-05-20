@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Test ###
+/src/test/
+
+### check list ###
+/check list.md
