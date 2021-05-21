@@ -14,16 +14,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+// Service for assigning tasks to technicians
 @Service
 public class AssignTechnicianService {
 
+    // Auto wire center schedule repo
     @Autowired
     private CenterScheduleRepository centerScheduleRepository;
+
+    // Auto wire service center repo
     @Autowired
     private ServiceCenterRepository serviceCenterRepository;
+
+    // Auto wire technician list repo
     @Autowired
     private TechnicianListRepository technicianListRepository;
 
+    // method to add tasks to technicians
     public CenterScheduleEntity addAssignTechnician(CenterSchedule centerSchedule) throws Exception {
         // find if there is any record with the center and technician on a given date
         if (centerScheduleRepository.findByTask(centerSchedule.getTechnicianId(),
@@ -67,14 +74,18 @@ public class AssignTechnicianService {
 
     }
 
+    // method to update tasks to technicians
     public CenterScheduleEntity updateAssignTechnician(CenterSchedule centerSchedule) throws Exception {
-
-        Optional<CenterScheduleEntity> centerOptional = centerScheduleRepository.findByTask(centerSchedule.getTechnicianId(),
+        // declare an Center Schedule Entity
+        Optional<CenterScheduleEntity> centerScheduleEntity = centerScheduleRepository.findByTask(centerSchedule.getTechnicianId(),
                 centerSchedule.getCenterId(),
                 centerSchedule.getDate());
-        if (centerOptional.isEmpty()) {
+
+        // check if Center Schedule Entity is empty
+        if (centerScheduleEntity.isEmpty()) {
             throw new ResourceNotFoundException("Task not found");
         } else {
+            // check if the input parameters have a valid start time
             if (serviceCenterRepository.ValidStartTime(centerSchedule.getCenterId(), centerSchedule.getStartTime()).isEmpty()) {
                 throw new ResourceBadException("Start time before the center start time");
             }
@@ -83,7 +94,9 @@ public class AssignTechnicianService {
             else if (serviceCenterRepository.ValidStopTime(centerSchedule.getCenterId(), centerSchedule.getEndTime()).isEmpty()) {
                 throw new ResourceBadException("Stop time after the center stop time");
             } else {
-                CenterScheduleEntity existingCenterSchedule = centerOptional.get();
+
+                // update the tasks to technicians
+                CenterScheduleEntity existingCenterSchedule = centerScheduleEntity.get();
                 existingCenterSchedule.setStartTime(centerSchedule.getStartTime());
                 existingCenterSchedule.setEndTime(centerSchedule.getEndTime());
                 return centerScheduleRepository.save(existingCenterSchedule);
@@ -91,15 +104,19 @@ public class AssignTechnicianService {
         }
     }
 
+    // method to delete tasks to technicians
     public ResponseEntity<CenterScheduleEntity> deleteAssignTechnician(CenterSchedule centerSchedule) throws Exception {
         Optional<CenterScheduleEntity> existingCenterSchedule = centerScheduleRepository.findByTask(centerSchedule.getTechnicianId(),
                 centerSchedule.getCenterId(),
                 centerSchedule.getDate());
 
+        // check if the task is present
         if (existingCenterSchedule.isEmpty()) {
             throw new ResourceNotFoundException("Task not found");
         } else {
             CenterScheduleEntity centerScheduleEntity = existingCenterSchedule.get();
+
+            // check if the tasks has been disabled previously
             if (centerScheduleEntity.isStatus()) {
                 centerScheduleEntity.setStatus(false);
                 centerScheduleRepository.save(centerScheduleEntity);
@@ -107,6 +124,7 @@ public class AssignTechnicianService {
                 throw new ResourceAlreadyProcessedException("Task already disabled");
             }
         }
+        // return HTTP status ok
         return ResponseEntity.ok().build();
 
     }

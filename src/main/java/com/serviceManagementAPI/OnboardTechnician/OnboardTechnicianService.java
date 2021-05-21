@@ -13,12 +13,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Service for assigning tasks to technicians
 @Service
 public class OnboardTechnicianService {
+
+    // Auto wire technician list repo
     @Autowired
     private TechnicianListRepository technicianListRepository;
+
+    // Auto wire service center repo
     @Autowired
     private ServiceCenterRepository serviceCenterRepository;
+
 
     public List<TechnicianListEntity> getTechnicianList() throws Exception {
         return technicianListRepository.findAllByStatus(true);
