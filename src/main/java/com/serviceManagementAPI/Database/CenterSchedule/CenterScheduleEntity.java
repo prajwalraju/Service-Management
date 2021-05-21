@@ -8,6 +8,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "center_schedule")
+@SuppressWarnings("unused")
 public class CenterScheduleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

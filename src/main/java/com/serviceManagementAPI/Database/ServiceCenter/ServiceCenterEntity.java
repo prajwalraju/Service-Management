@@ -7,6 +7,7 @@ import java.sql.Time;
 
 @Entity
 @Table(name = "service_center")
+@SuppressWarnings("unused")
 public class ServiceCenterEntity {
     @Id
     private int centerId;

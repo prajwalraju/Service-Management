@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "technician_list")
+@SuppressWarnings("unused")
 public class TechnicianListEntity {
     @Id
     private int technicianId;

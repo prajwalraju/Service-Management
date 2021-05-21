@@ -21,12 +21,12 @@ public class OnboardCenterService {
     private ServiceCenterRepository serviceCenterRepository;
 
     // method to get all the service centers onboarded and active
-    public List<ServiceCenterEntity> getServiceCenter() throws Exception {
+    public List<ServiceCenterEntity> getServiceCenter() {
         return serviceCenterRepository.findAllByStatus(true);
     }
 
     // method to add a new service center
-    public ServiceCenterEntity addServiceCenter(ServiceCenter serviceCenter) throws Exception {
+    public ServiceCenterEntity addServiceCenter(ServiceCenter serviceCenter) {
 
         // build a entity object of service center using the client service center details
         ServiceCenterEntity serviceCenterEntity = new ServiceCenterEntity(serviceCenter.getCenterId(),
@@ -46,7 +46,7 @@ public class OnboardCenterService {
     }
 
     // method to update existing service center
-    public ServiceCenterEntity updateServiceCenter(ServiceCenter serviceCenter) throws Exception {
+    public ServiceCenterEntity updateServiceCenter(ServiceCenter serviceCenter) {
 
         // check if the center is existing
         ServiceCenterEntity existing = serviceCenterRepository.findById(serviceCenter.getCenterId())
@@ -63,7 +63,7 @@ public class OnboardCenterService {
     }
 
     // method to soft delete the service center
-    public ResponseEntity<ServiceCenterEntity> delServiceCenter(int centerId) throws Exception {
+    public ResponseEntity<ServiceCenterEntity> delServiceCenter(int centerId) {
 
         // check if the service center is existing
         ServiceCenterEntity existing = serviceCenterRepository.findById(centerId)

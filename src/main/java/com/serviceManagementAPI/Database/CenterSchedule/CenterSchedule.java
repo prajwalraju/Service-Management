@@ -5,6 +5,7 @@ import java.sql.Time;
 import java.time.LocalDate;
 
 
+@SuppressWarnings("unused")
 public class CenterSchedule {
 
     @Valid

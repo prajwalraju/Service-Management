@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Time;
 
+@SuppressWarnings("unused")
 public class ServiceCenter {
     @NotNull
     private int centerId;

@@ -26,11 +26,11 @@ public class OnboardTechnicianService {
     private ServiceCenterRepository serviceCenterRepository;
 
 
-    public List<TechnicianListEntity> getTechnicianList() throws Exception {
+    public List<TechnicianListEntity> getTechnicianList() {
         return technicianListRepository.findAllByStatus(true);
     }
 
-    public TechnicianListEntity addTechnicianList(TechnicianList technicianList) throws Exception {
+    public TechnicianListEntity addTechnicianList(TechnicianList technicianList) {
         TechnicianListEntity technicianListEntity = new TechnicianListEntity(technicianList.getTechnicianId(),
                 technicianList.getCenterId(),
                 technicianList.isStatus());
@@ -45,7 +45,7 @@ public class OnboardTechnicianService {
         }
     }
 
-    public TechnicianListEntity updateTechnicianList(TechnicianList technicianList) throws Exception {
+    public TechnicianListEntity updateTechnicianList(TechnicianList technicianList) {
         if (serviceCenterRepository.findByCenterAndStatus(technicianList.getCenterId()).isEmpty()) {
             throw new ResourceNotFoundException("Center not found");
         } else {
@@ -57,7 +57,7 @@ public class OnboardTechnicianService {
         }
     }
 
-    public ResponseEntity<TechnicianListEntity> delTechnicianList(int technicianId) throws Exception {
+    public ResponseEntity<TechnicianListEntity> delTechnicianList(int technicianId) {
         TechnicianListEntity existing = technicianListRepository.findById(technicianId)
                 .orElseThrow(() -> new ResourceNotFoundException("Technician not found"));
 

@@ -31,7 +31,7 @@ public class AssignTechnicianService {
     private TechnicianListRepository technicianListRepository;
 
     // method to add tasks to technicians
-    public CenterScheduleEntity addAssignTechnician(CenterSchedule centerSchedule) throws Exception {
+    public CenterScheduleEntity addAssignTechnician(CenterSchedule centerSchedule) {
         // find if there is any record with the center and technician on a given date
         if (centerScheduleRepository.findByTask(centerSchedule.getTechnicianId(),
                 centerSchedule.getCenterId(),
@@ -75,7 +75,7 @@ public class AssignTechnicianService {
     }
 
     // method to update tasks to technicians
-    public CenterScheduleEntity updateAssignTechnician(CenterSchedule centerSchedule) throws Exception {
+    public CenterScheduleEntity updateAssignTechnician(CenterSchedule centerSchedule) {
         // declare an Center Schedule Entity
         Optional<CenterScheduleEntity> centerScheduleEntity = centerScheduleRepository.findByTask(centerSchedule.getTechnicianId(),
                 centerSchedule.getCenterId(),
@@ -105,7 +105,7 @@ public class AssignTechnicianService {
     }
 
     // method to delete tasks to technicians
-    public ResponseEntity<CenterScheduleEntity> deleteAssignTechnician(CenterSchedule centerSchedule) throws Exception {
+    public ResponseEntity<CenterScheduleEntity> deleteAssignTechnician(CenterSchedule centerSchedule) {
         Optional<CenterScheduleEntity> existingCenterSchedule = centerScheduleRepository.findByTask(centerSchedule.getTechnicianId(),
                 centerSchedule.getCenterId(),
                 centerSchedule.getDate());

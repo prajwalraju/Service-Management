@@ -17,7 +17,7 @@ public class SearchTechnicianService {
     @Autowired
     private ServiceCenterRepository serviceCenterRepository;
 
-    public List<CenterScheduleEntity> getSearchTechnician(CenterSchedule centerSchedule) throws Exception {
+    public List<CenterScheduleEntity> getSearchTechnician(CenterSchedule centerSchedule) {
 
         CenterScheduleEntity centerScheduleEntity = new CenterScheduleEntity(centerSchedule.getId(),
                 centerSchedule.getTechnicianId(),

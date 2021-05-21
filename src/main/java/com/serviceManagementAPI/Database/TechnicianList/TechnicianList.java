@@ -2,6 +2,7 @@ package com.serviceManagementAPI.Database.TechnicianList;
 
 import javax.validation.constraints.NotNull;
 
+@SuppressWarnings("unused")
 public class TechnicianList {
 
     @NotNull

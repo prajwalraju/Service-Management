@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.Date;
+import java.util.Objects;
 
 
 @ControllerAdvice
@@ -17,21 +18,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> HandleResourceNotFoundException(ResourceNotFoundException resourceNotFoundException, WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), resourceNotFoundException.getMessage(), webRequest.getDescription(false));
-        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
     // exception 400
     @ExceptionHandler(ResourceBadException.class)
     public ResponseEntity<?> HandleResourceDeletedException(ResourceBadException resourceDeletedException, WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), resourceDeletedException.getMessage(), webRequest.getDescription(false));
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     // exception 422
     @ExceptionHandler(ResourceAlreadyProcessedException.class)
     public ResponseEntity<?> HandleResourceAlreadyPresentException(ResourceAlreadyProcessedException resourceAlreadyPresentException, WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), resourceAlreadyPresentException.getMessage(), webRequest.getDescription(false));
-        return new ResponseEntity(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
+        return new ResponseEntity<>(errorDetails, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
     // validation
@@ -39,7 +40,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> HandelValidationException(MethodArgumentNotValidException exception) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(),
                 "Validation Error",
-                exception.getBindingResult().getFieldError().getDefaultMessage());
+                Objects.requireNonNull(exception.getBindingResult().getFieldError()).getDefaultMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
@@ -47,7 +48,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<?> HandleException(Exception exception, WebRequest webRequest) {
         ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), webRequest.getDescription(false));
-        return new ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
