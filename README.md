@@ -27,14 +27,6 @@
 
 ![Flow diagram](./assets/flow diagram.png)
 
-## Download
-
-You can [download](https://gitlab.corp.olacabs.com/prajwal.r2/servicemanagementapi) the latest installable version of
-Service Management API.
-
-## POSTMAN COLLECTION
-
-[Postman Collection](https://www.getpostman.com/collections/ed12bcbaf06156cc5e04)
 
 ## How To Initialize the project
 
@@ -43,7 +35,6 @@ and [Springboot](https://spring.io/projects/spring-boot) installed on your compu
 
 ```bash
 # Clone this repository
-$ git clone https://gitlab.corp.olacabs.com/prajwal.r2/servicemanagementapi.git
 
 # Go into the repository
 $ cd servicemanagementapi
@@ -167,14 +158,20 @@ curl --location --request GET 'http://localhost:8080/v1/searchTechnician' \
 ]
 ```
 
+## POSTMAN COLLECTION
+
+You can visit the [Postman Collection](https://www.getpostman.com/collections/ed12bcbaf06156cc5e04) for examples and
+more USE cases
+
 ## Credits
 
-This software uses the following open source packages:
+This API uses the following source packages:
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
 - [Spring Initializer](https://start.spring.io/)
 - [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
 - [MySQL](https://www.mysql.com/)
+- [Postman](https://www.postman.com/)
 
 
 
