@@ -10,7 +10,7 @@
 </div>
 
 
-![service API](./assets/service api.gif)
+![service API](https://raw.githubusercontent.com/prajwalraju/Service-Management/main/assets/service%20api.gif)
 
 ## Key Features
 
@@ -25,7 +25,7 @@
 
 ## Flow
 
-![Flow diagram](./assets/flow diagram.png)
+![Flow diagram](https://raw.githubusercontent.com/prajwalraju/Service-Management/main/assets/flow%20diagram.png)
 
 
 ## How To Initialize the project
